@@ -34,7 +34,12 @@ angular.module('FooApp', ['ui.bootstrap'])
       $http.get('/api/getEvents').then(function(response){
         console.log(response);
         $scope.eventList = response.data;
-      })
+      }).finally(function(){
+        $scope.eventList.forEach(function(element){
+          element.startingTime = new Date(element.startingTime);
+          element.startingTime = element.startingTime.getHours() +':'+ element.startingTime.getMinutes();
+        });
+      });
     }
 
     $scope.getEvents();
