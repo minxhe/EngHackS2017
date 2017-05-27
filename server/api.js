@@ -4,16 +4,16 @@ var uwapi=require('uwapi')('100f8c910163784117c5ae5cf49bb5d8');
 var twilio = require('twilio');
 var accountSid = 'AC5bfaf857260b1a76467e05c406dca4ed'; // Your Account SID from www.twilio.com/console
 var authToken = 'e7b6045c47f6e3aa5d09e1eb93e7eea7';   // Your Auth Token from www.twilio.com/console
-
 var client = new twilio(accountSid, authToken);
 
 module.exports = function(router){
   router.post('/subscribe', function(req,res){
+    console.log(req.body);
     var newSub = new Subscriber();
-    Subscriber.phoneNumber = req.body.phoneNumber;
-    Subscriber.save(function(err) {
+    newSub.phoneNumber = '+'+req.body.phoneNum;
+    newSub.save(function(err) {
       if(err){
-        console.log("Error when saving the model");
+        console.log("Error when saving the model" + err);
         res.json({success: false});
       }else{
         console.log("successfully saved the model");

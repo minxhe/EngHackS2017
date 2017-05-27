@@ -1,34 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <title>waterFood</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
-
-
-
-    <title>WaterFoo</title>
+    <link rel="stylesheet" type="text/css" href="app/public/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" type="text/css" rel="stylesheet" >
   </head>
+
   <body ng-app="FooApp" ng-controller="AppController">
-    <h1>AYYY LMAO</h1>
-    <h1>{{money}}</h1>
-    <select name="location" id="singleSelect" ng-model="location">
-      <option ng-repeat="x in buildingList">{{x.building_code}}</option>
-    </select>
+  	<div class="header">
+	     <h1><a href="#"><img src="http://i.imgur.com/yMZEtRd.png"  style="height:80px;">
+  	waterFood</a></h1>
+              <button type="button" ><img src="http://i.imgur.com/909pUMY.png"  style="height:30px;" ng-click="getEvents()"></button>
+              <form>
+                <input type="text" ng-model="phoneNum" />
+                <button type="submit" ng-click="subscribeUser()">Submit to Subscribe</button>
+              </form>
+       <details>
+       <summary>Add Another Event</summary>
+       <form>
+         <p style={color: white;}>Building:</p>
+         <select name="location" id="singleSelect" ng-model="location">
+           <option ng-repeat="x in buildingList">{{x.building_code}}</option>
+         </select>
+         <span id="time" uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="ismeridian"></span>
+         <input type="text" name="" placeholder="room number" ng-model="roomNumber"/>
+         <input type="text" name="" placeholder="serving size" ng-model="servingSize"/>
+         <input type="text" name="" placeholder="food give" ng-model="foodType"/>
+         <button type="button" ng-click="addEvent()">Submit</button>
+       </form>
 
-    <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="ismeridian"></div>
-
-    <pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
-    {{myTime}}
-
+       </details>
+       </div>
+  	</div class="listofevents">
+      <table>
+      <thead>
+          <th> List of Free Food Events</th>
+      </thead>
+      <tr ng-repeat='x in eventList'>
+        <td> {{x.location}}</td>
+        <td> {{x.roomNumber}}</td>
+        <td>{{x.servingSize}}</td>
+        <td> {{x.startingTime}}</td>
+        <td> {{x.foodType}}</td>
+      </tr>
+      </table>
+    </div>
+    {{mytime}}
 
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
   <script type="text/javascript" src="app/app.js"></script>
-
 </html>

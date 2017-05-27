@@ -40,21 +40,17 @@ angular.module('FooApp', ['ui.bootstrap'])
     $scope.getEvents();
 
     $scope.addEvent = function(){
-      var servingSize = '';
-      if($scope.servingSize !== undefined && $scope.servingSize !== null && $scope.servingSize !== ''){
-        $scope.servingSize = servingSize;
-      }
-
       var payload = {
         location: $scope.location,
         roomNumber: $scope.roomNumber,
-        startingTime: $scope.startingTime,
+        startingTime: $scope.mytime,
         //endingTime: $scope.endingTime, //cheating
         servingSize: $scope.servingSize,
         foodType: $scope.foodType,
       }
       $http.post('/api/addEvent', payload).then(function(response){
         console.log("addEvent"+response);
+        $scope.getEvents();
       });
     }
 
@@ -70,8 +66,8 @@ angular.module('FooApp', ['ui.bootstrap'])
       });
     }
 
-    $scope.subscribeUser = function(phoneNum){
-      $http.post('/api/subscribe', phoneNum).then(function(response){
+    $scope.subscribeUser = function(){
+      $http.post('/api/subscribe', {phoneNum: $scope.phoneNum}).then(function(response){
         console.log("subscibe"+response);
       });
     }
