@@ -13,25 +13,32 @@
 
   <body ng-app="FooApp" ng-controller="AppController">
   	<div class="header">
-	     <h1><a href="#"><img src="http://i.imgur.com/yMZEtRd.png"  style="height:80px;">
-  	waterFood</a></h1>
-              <button type="button" ><img src="http://i.imgur.com/909pUMY.png"  style="height:30px;" ng-click="getEvents()"></button>
+	     <h1><img src="http://i.imgur.com/yMZEtRd.png"  style="height:80px;">
+  	waterFood</h1>
+              <button type="button"><img src="http://i.imgur.com/909pUMY.png"  style="height:30px;" ng-click="getEvents()"></button>
               <form>
+                <div id="submitbutton">
                 <input type="text" ng-model="phoneNum" />
-                <button type="submit" ng-click="subscribeUser()">Submit to Subscribe</button>
+                <button type="submit" ng-click="subscribeUser()">Enter Phone Number to Subscribe to SMS Updates</button>
+</div>
               </form>
        <details>
        <summary>Add Another Event</summary>
        <form>
-         <p style={color: white;}>Building:</p>
-         <select name="location" id="singleSelect" ng-model="location">
-           <option ng-repeat="x in buildingList">{{x.building_code}}</option>
+         <p style={color: white;text-align:center}>Building:
+         <select name="location" id="singleSelect" ng-model="location"></p>
+           <p style={color: black;text-align:center}><option ng-repeat="x in buildingList">{{x.building_code}}</option></p>
          </select>
-         <span id="time" uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="ismeridian"></span>
-         <input type="text" name="" placeholder="room number" ng-model="roomNumber"/>
-         <input type="text" name="" placeholder="serving size" ng-model="servingSize"/>
-         <input type="text" name="" placeholder="food give" ng-model="foodType"/>
-         <button type="button" ng-click="addEvent()">Submit</button>
+       </p>
+       <p>
+         <div id="form">
+         <input type="text" name="" placeholder="Room Number" ng-model="roomNumber"/>
+         <input type="text" name="" placeholder="Serving Size" ng-model="servingSize"/>
+         <input type="text" name="" placeholder="Food Provided" ng-model="foodType"/>
+         <div id="time" uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="ismeridian"></div>
+</p>
+        </div>
+         <div id="submitbutton"><button type="button" ng-click="addEvent()">Submit</button></div>
        </form>
 
        </details>
@@ -39,7 +46,14 @@
   	</div class="listofevents">
       <table>
       <thead>
-          <th> List of Free Food Events</th>
+          <th colspan="5"> List of Free Food Events</th>
+<tr>
+  <th> Building </th>
+  <th> Room Number </th>
+  <th> Serving Size </th>
+  <th> Time Started </th>
+  <th> Food Given </th>
+</tr>
       </thead>
       <tr ng-repeat='x in eventList'>
         <td> {{x.location}}</td>
@@ -50,7 +64,6 @@
       </tr>
       </table>
     </div>
-    {{mytime}}
 
   </body>
 
