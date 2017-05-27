@@ -1,0 +1,19 @@
+{
+  "name": "v2",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "4.13.3",
+    "mongoose": "^4.10.2",
+    "twilio": "^3.3.0",
+    "ui-select": "^0.19.8",
+    "uwapi": "^1.1.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
